@@ -7,7 +7,7 @@ export default function Header({ children }) {
             <nav className='nav'>
                 <Link className='nav__logo' to='/'>
                     <img className='nav__logo--image' src={Logo} alt='Argent Bank Logo'/>
-                    <h1 className='nav__sr-only'>Argent Bank</h1>
+                    <h1 className='sr-only'>Argent Bank</h1>
                 </Link>
                 <div>
                     {children}
