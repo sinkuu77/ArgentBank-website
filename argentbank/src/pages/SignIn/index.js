@@ -4,6 +4,7 @@ import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
 
 
 import Header from '../../containers/Header'
+import Button from '../../components/Button'
 
 import '../../containers/Header/style.scss'
 import './style.scss'
@@ -34,9 +35,9 @@ export default function SignIn() {
                         <input type="checkbox" id="remember-me" />
                         <label for="remember-me">Remember me</label>
                     </div>
-                    <button className='signin__content--btn'>
-                        Sign In
-                    </button>
+                    <Button 
+                    text={"Sign In"}
+                    />
                 </form>
             </section>
         </main>
