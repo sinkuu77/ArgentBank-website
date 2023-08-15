@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import Logo from '../../assets/argentBankLogo.png'
+import Logo from '../../assets/argentBankLogo.webp'
 
 export default function Header({ children }) {
     return (
