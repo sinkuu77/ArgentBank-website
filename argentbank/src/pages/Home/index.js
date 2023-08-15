@@ -17,7 +17,7 @@ export default function Home() {
     return (
         <>
             <Header>
-                <Link to='/login' className='nav__item'>
+                <Link to='/sign-in' className='nav__item'>
                     <FontAwesomeIcon className='nav__item--icon'icon={faCircleUser}/>
                     Sign In
                 </Link>
