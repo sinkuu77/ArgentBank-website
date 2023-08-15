@@ -13,7 +13,7 @@ export default function SignIn() {
     return (
         <>
         <Header>
-            <Link to='/sign-in' className='nav__item'>
+            <Link to='/user' className='nav__item'>
                 <FontAwesomeIcon className='nav__item--icon'icon={faCircleUser}/>
                     Sign In
             </Link>
