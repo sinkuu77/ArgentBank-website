@@ -33,7 +33,7 @@ export default function Home() {
                     </section>
                 </div>
                     <section className='features'>
-                        <h2 class="sr-only">Features</h2>
+                        <h2 className="sr-only">Features</h2>
                         <FeatureCard 
                         icon={Chat}
                         title={"You are our #1 priority"}

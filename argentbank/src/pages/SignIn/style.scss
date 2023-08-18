@@ -12,6 +12,12 @@
         &--icon {
             font-size: 5rem;
         }
+        &--error {
+            background-color: #eb646a;
+            color: #ffffff;
+            padding: 12px;
+            border-radius: 3px;
+        }
         &--wrapper {
             display: flex;
             flex-direction: column;
