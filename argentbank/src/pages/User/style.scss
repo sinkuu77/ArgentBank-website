@@ -4,6 +4,14 @@
     &__header {
         color: #fff;
         margin-bottom: 2rem;
+        h1 {
+            margin-bottom: 0px;
+        }
+        p {
+            font-size: 32px;
+            font-weight: bold;
+            margin-top: 0;
+        }
         &--edit {
             border-color: #00bc77;
             background-color: #00bc77;

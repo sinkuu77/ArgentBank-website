@@ -21,7 +21,7 @@ export default function SignIn() {
         }
     }, [navigate, userToken, userInfo])
     
-    const submitForm = (data) => {
+    const submitForm = async (data) => {
         dispatch(userLogin(data))
         if (userToken) {
             dispatch(userProfile(userToken))
