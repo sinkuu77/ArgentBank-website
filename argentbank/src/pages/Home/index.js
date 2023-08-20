@@ -1,27 +1,15 @@
-import { Link } from 'react-router-dom'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
-
-import Header from '../../containers/Header'
-import FeatureCard from '../../components/FeatureCard';
+import FeatureCard from '../../components/FeatureCard'
 
 import Chat from '../../assets/icon-chat.webp'
 import Money from '../../assets/icon-money.webp'
 import Security from '../../assets/icon-security.webp'
 
-import '../../containers/Header/style.scss'
 import './style.scss'
 
 
 export default function Home() {
     return (
         <>
-            <Header>
-                <Link to='/sign-in' className='nav__item'>
-                    <FontAwesomeIcon className='nav__item--icon'icon={faCircleUser}/>
-                    Sign In
-                </Link>
-            </Header>
             <main>
                 <div className='hero'>
                     <section className="hero__content">

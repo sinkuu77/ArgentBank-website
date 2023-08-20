@@ -1,39 +1,35 @@
 import { useEffect } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { userLogin } from '../../redux/modules/auth/authAction'
+import { userLogin, userProfile } from '../../redux/modules/auth/authAction'
 
-import Header from '../../containers/Header'
 import Button from '../../components/Button'
 
-import '../../containers/Header/style.scss'
 import './style.scss'
 
 export default function SignIn() {
-    const { loading, error, userToken } = useSelector((state) => state.auth)
+    const { loading, error, userToken, userInfo } = useSelector((state) => state.auth)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
     useEffect(() => {
-        if(userToken) {
+        if(userToken&&userInfo) {
             navigate('/user')
         }
-    }, [navigate, userToken])
+    }, [navigate, userToken, userInfo])
     
     const submitForm = (data) => {
         dispatch(userLogin(data))
+        if (userToken) {
+            dispatch(userProfile(userToken))
+        }
     }
+
     return (
         <>
-        <Header>
-            <Link to='/user' className='nav__item'>
-                <FontAwesomeIcon className='nav__item--icon'icon={faCircleUser}/>
-                    Sign In
-            </Link>
-        </Header>
         <main className='signin'>
             <section className='signin__content'>
                 <FontAwesomeIcon className='signin__content--icon'icon={faCircleUser}/>
