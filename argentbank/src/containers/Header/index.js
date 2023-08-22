@@ -21,12 +21,12 @@ export default function Header() {
                 </Link>
                 {userToken&&userInfo?
                 <div>
-                    <Link to='/user' className='nav__item'>
-                        <FontAwesomeIcon className='nav__item--icon'icon={faCircleUser}/>
+                    <Link to='/user' className='nav__connected'>
+                        <FontAwesomeIcon className='nav__connected--icon'icon={faCircleUser}/>
                         {firstName}
                     </Link>
-                    <Link to='/' className='nav__item' onClick={() => dispatch(logout())}>
-                        <FontAwesomeIcon className='nav__item--icon'icon={faRightFromBracket} />
+                    <Link to='/' className='nav__connected' onClick={() => dispatch(logout())}>
+                        <FontAwesomeIcon className='nav__connected--icon'icon={faRightFromBracket} />
                         Sign out
                     </Link>
                 </div> : 

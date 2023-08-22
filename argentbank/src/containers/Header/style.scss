@@ -11,6 +11,18 @@
             width: 200px;
         }
     }
+    &__connected {
+        font-weight: bold;
+        color: #42b983;
+        text-decoration: none;
+        margin-right: 0.5rem;
+        &:hover {
+            text-decoration: underline;
+        }
+        &--icon {
+            margin-right: 6px;
+        }
+    }
     &__item {
         font-weight: bold;
         color: #2c3e50;

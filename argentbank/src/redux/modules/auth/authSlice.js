@@ -12,6 +12,8 @@ const initialState = {
     firstName: null,
     lastName: null,
     userToken,
+    checked: false,
+    email: '',
     error: null,
     success: null
 }
@@ -26,6 +28,16 @@ export const authSlice = createSlice({
             state.userInfo = null
             state.userToken = null
             state.error = null
+        },
+        getEmail: (state, action) => {
+            state.email = action.payload
+        },
+        remember: (state) => {
+            state.checked = true
+        },
+        forget: (state) => {
+            state.checked = false
+            localStorage.removeItem('email')
         }
     },
     extraReducers: {
@@ -59,5 +71,5 @@ export const authSlice = createSlice({
 })
 
 
-export const { logout } = authSlice.actions
+export const { logout, remember, forget, getEmail } = authSlice.actions
 export default authSlice.reducer

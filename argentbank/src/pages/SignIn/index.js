@@ -5,13 +5,14 @@ import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { userLogin, userProfile } from '../../redux/modules/auth/authAction'
+import { remember, forget, getEmail } from '../../redux/modules/auth/authSlice'
 
 import Button from '../../components/Button'
 
 import './style.scss'
 
 export default function SignIn() {
-    const { loading, error, userToken, userInfo } = useSelector((state) => state.auth)
+    const { checked, email, loading, error, userToken, userInfo } = useSelector((state) => state.auth)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -20,7 +21,7 @@ export default function SignIn() {
             navigate('/user')
         }
     }, [navigate, userToken, userInfo])
-    
+
     const submitForm = async (data) => {
         dispatch(userLogin(data))
         if (userToken) {
@@ -38,23 +39,27 @@ export default function SignIn() {
                     event.preventDefault()
                     const email = event.target[0].value
                     const password = event.target[1].value
+                    const check = event.target[2].checked
                     const user = {
                         email: email,
                         password: password,
                     }
+                    if(check === true) {
+                        localStorage.setItem('email', email)
+                    } 
                     submitForm(user)
                 }}>
                     {error && <p className='signin__content--error'>{error}</p>}
                     <div className='signin__content--wrapper'>
                         <label htmlFor="email">Email</label>
-                        <input type="text" id="email" />
+                        <input type="text" id="email" onChange={(event) => dispatch(getEmail(event.target.value))} value={email? email : ''}/>
                     </div>
                     <div className='signin__content--wrapper'>
                         <label htmlFor="password">Password</label>
                         <input type="password" id="password" />
                     </div>
                     <div className="signin__content--remember">
-                        <input type="checkbox" id="remember-me" />
+                        <input type="checkbox" id="remember-me" onChange={() => dispatch(checked? forget() : remember())} checked={checked} />
                         <label htmlFor="remember-me">Remember me</label>
                     </div>
                     <Button 
