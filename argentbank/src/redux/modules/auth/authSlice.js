@@ -5,6 +5,8 @@ import { userLogin, userProfile } from './authAction'
 const userToken = localStorage.getItem('userToken') 
         ? localStorage.getItem('userToken') : null
 
+const initialEmail = localStorage.getItem('email') || ''
+
 
 const initialState = {
     loading: false,
@@ -13,7 +15,7 @@ const initialState = {
     lastName: null,
     userToken,
     checked: false,
-    email: '',
+    email: initialEmail,
     error: null,
     success: null
 }
@@ -29,8 +31,8 @@ export const authSlice = createSlice({
             state.userToken = null
             state.error = null
         },
-        getEmail: (state, action) => {
-            state.email = action.payload
+        getEmail: (state, { payload }) => {
+            state.email = payload
         },
         remember: (state) => {
             state.checked = true
@@ -38,6 +40,7 @@ export const authSlice = createSlice({
         forget: (state) => {
             state.checked = false
             localStorage.removeItem('email')
+            state.email = ''
         }
     },
     extraReducers: {

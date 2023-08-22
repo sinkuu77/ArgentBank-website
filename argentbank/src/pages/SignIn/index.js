@@ -15,6 +15,7 @@ export default function SignIn() {
     const { checked, email, loading, error, userToken, userInfo } = useSelector((state) => state.auth)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    console.log(email)
 
     useEffect(() => {
         if(userToken&&userInfo) {
