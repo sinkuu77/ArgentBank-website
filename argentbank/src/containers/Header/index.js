@@ -10,7 +10,7 @@ import Logo from '../../assets/argentBankLogo.webp'
 import './style.scss'
 
 export default function Header() {
-    const { userInfo, firstName, userToken } = useSelector((state) => state.auth)
+    const { userToken } = useSelector((state) => state.auth)
     const dispatch = useDispatch()
     return (
         <header>
@@ -19,11 +19,10 @@ export default function Header() {
                     <img className='nav__logo--image' src={Logo} alt='Argent Bank Logo'/>
                     <h1 className='sr-only'>Argent Bank</h1>
                 </Link>
-                {userToken&&userInfo?
+                {userToken?
                 <div>
                     <Link to='/user' className='nav__connected'>
                         <FontAwesomeIcon className='nav__connected--icon'icon={faCircleUser}/>
-                        {firstName}
                     </Link>
                     <Link to='/' className='nav__connected' onClick={() => dispatch(logout())}>
                         <FontAwesomeIcon className='nav__connected--icon'icon={faRightFromBracket} />

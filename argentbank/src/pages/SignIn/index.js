@@ -5,29 +5,26 @@ import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { userLogin, userProfile } from '../../redux/modules/auth/authAction'
-import { remember, forget, getEmail } from '../../redux/modules/auth/authSlice'
+import { remember, getEmail } from '../../redux/modules/auth/authSlice'
 
 import Button from '../../components/Button'
 
 import './style.scss'
 
 export default function SignIn() {
-    const { checked, email, loading, error, userToken, userInfo } = useSelector((state) => state.auth)
+    const { checked, email, loading, error, userToken} = useSelector((state) => state.auth)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    console.log(email)
 
     useEffect(() => {
-        if(userToken&&userInfo) {
+        if(userToken) {
+            dispatch(userProfile(userToken))
             navigate('/user')
         }
-    }, [navigate, userToken, userInfo])
+    }, [navigate, dispatch, userToken])
 
     const submitForm = async (data) => {
         dispatch(userLogin(data))
-        if (userToken) {
-            dispatch(userProfile(userToken))
-        }
     }
 
     return (
@@ -60,7 +57,7 @@ export default function SignIn() {
                         <input type="password" id="password" />
                     </div>
                     <div className="signin__content--remember">
-                        <input type="checkbox" id="remember-me" onChange={() => dispatch(checked? forget() : remember())} checked={checked} />
+                        <input type="checkbox" id="remember-me" onChange={() => dispatch(remember(checked))} checked={checked} />
                         <label htmlFor="remember-me">Remember me</label>
                     </div>
                     <Button 

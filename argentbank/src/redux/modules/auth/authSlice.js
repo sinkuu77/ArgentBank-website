@@ -10,9 +10,6 @@ const initialEmail = localStorage.getItem('email') || ''
 
 const initialState = {
     loading: false,
-    userInfo: null,
-    firstName: null,
-    lastName: null,
     userToken,
     checked: false,
     email: initialEmail,
@@ -27,20 +24,14 @@ export const authSlice = createSlice({
         logout: (state) => {
             localStorage.removeItem('userToken')
             state.loading = false
-            state.userInfo = null
             state.userToken = null
             state.error = null
         },
-        getEmail: (state, { payload }) => {
+        setEmail: (state, { payload }) => {
             state.email = payload
         },
-        remember: (state) => {
-            state.checked = true
-        },
-        forget: (state) => {
-            state.checked = false
-            localStorage.removeItem('email')
-            state.email = ''
+        remember: (state, { payload }) => {
+            state.checked = payload
         }
     },
     extraReducers: {
@@ -51,6 +42,9 @@ export const authSlice = createSlice({
         [userLogin.fulfilled]: (state, { payload }) => {
             state.loading = false
             state.userToken = payload.body.token
+            if(state.checked) {
+                localStorage.setItem('userToken', userToken)
+            }
         },
         [userLogin.rejected]: (state, { payload }) => {
             state.loading = false
@@ -62,7 +56,6 @@ export const authSlice = createSlice({
         },
         [userProfile.fulfilled]: (state, { payload }) => {
             state.loading = false
-            state.userInfo = payload.body
             state.firstName = payload.body.firstName
             state.lastName = payload.body.lastName
         },
@@ -74,5 +67,5 @@ export const authSlice = createSlice({
 })
 
 
-export const { logout, remember, forget, getEmail } = authSlice.actions
+export const { logout, remember, getEmail } = authSlice.actions
 export default authSlice.reducer
