@@ -1,4 +1,4 @@
-//import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 import AccountCard from '../../components/AccountCard'
 
@@ -6,13 +6,13 @@ import AccountCard from '../../components/AccountCard'
 import './style.scss'
 
 export default function User() {
-
+    const { firstName, lastName } = useSelector((state) => state.profile)
     return (
         <>
         <main className="user">
             <div className="user__header">
                 <h1>Welcome back</h1>
-                <p>{`${'firstName'} ${''}!`}</p>
+                <p>{`${firstName} ${lastName}!`}</p>
                 <button className="user__header--edit">Edit Name</button>
             </div>
             <h2 className="sr-only">Accounts</h2>

@@ -4,8 +4,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { userLogin, userProfile } from '../../redux/modules/auth/authAction'
-import { remember, getEmail } from '../../redux/modules/auth/authSlice'
+import { userLogin } from '../../redux/modules/auth/authAction'
+import { userProfile } from '../../redux/modules/profile/profileAction'
+import { remember, setEmail } from '../../redux/modules/auth/authSlice'
 
 import Button from '../../components/Button'
 
@@ -50,7 +51,7 @@ export default function SignIn() {
                     {error && <p className='signin__content--error'>{error}</p>}
                     <div className='signin__content--wrapper'>
                         <label htmlFor="email">Email</label>
-                        <input type="text" id="email" onChange={(event) => dispatch(getEmail(event.target.value))} value={email? email : ''}/>
+                        <input type="text" id="email" onChange={(event) => dispatch(setEmail(event.target.value))} value={email? email : ''}/>
                     </div>
                     <div className='signin__content--wrapper'>
                         <label htmlFor="password">Password</label>

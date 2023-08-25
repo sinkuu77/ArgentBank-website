@@ -3,23 +3,24 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 
 const url = 'http://localhost:3001/api/v1'
 
-export const userLogin = createAsyncThunk(
-    'auth/login',
-    async ({ email, password }, { rejectWithValue }) => {
+export const userProfile = createAsyncThunk(
+    'user/profile',
+    async ({ token }, { rejectWithValue }) => {
         try {
             const config = {
                 headers: {
                     'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': 'Bearer' + localStorage.getItem('userToken'),
                 },
             }
             const { data } = await axios.post(
-                `${url}/user/login`,
-                { email, password },
+                `${url}/user/profile`,
+                { token },
                 config
             )
-            localStorage.setItem('userToken', data.body.token)
             return data
-        } catch (error) {
+        } catch(error) {
             if(error.response && error.response.data.message) {
                 return rejectWithValue(error.response.data.message)
             } else {

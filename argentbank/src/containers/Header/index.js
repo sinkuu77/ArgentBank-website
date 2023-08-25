@@ -11,6 +11,7 @@ import './style.scss'
 
 export default function Header() {
     const { userToken } = useSelector((state) => state.auth)
+    const { firstName } = useSelector((state) => state.profile)
     const dispatch = useDispatch()
     return (
         <header>
@@ -23,6 +24,7 @@ export default function Header() {
                 <div>
                     <Link to='/user' className='nav__connected'>
                         <FontAwesomeIcon className='nav__connected--icon'icon={faCircleUser}/>
+                        {firstName}
                     </Link>
                     <Link to='/' className='nav__connected' onClick={() => dispatch(logout())}>
                         <FontAwesomeIcon className='nav__connected--icon'icon={faRightFromBracket} />
