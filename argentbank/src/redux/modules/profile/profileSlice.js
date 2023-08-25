@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { userProfile } from './profileAction'
 
-
 const initialState = {
     loading: false,
     firstName: '',

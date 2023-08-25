@@ -24,7 +24,7 @@ export default function SignIn() {
         }
     }, [navigate, dispatch, userToken])
 
-    const submitForm = async (data) => {
+    const submitForm = (data) => {
         dispatch(userLogin(data))
     }
 
@@ -38,14 +38,10 @@ export default function SignIn() {
                     event.preventDefault()
                     const email = event.target[0].value
                     const password = event.target[1].value
-                    const check = event.target[2].checked
                     const user = {
                         email: email,
                         password: password,
                     }
-                    if(check === true) {
-                        localStorage.setItem('email', email)
-                    } 
                     submitForm(user)
                 }}>
                     {error && <p className='signin__content--error'>{error}</p>}
@@ -58,7 +54,7 @@ export default function SignIn() {
                         <input type="password" id="password" />
                     </div>
                     <div className="signin__content--remember">
-                        <input type="checkbox" id="remember-me" onChange={() => dispatch(remember(checked))} checked={checked} />
+                        <input type="checkbox" id="remember-me" onChange={(event) => dispatch(remember(event.target.checked))} checked={checked} />
                         <label htmlFor="remember-me">Remember me</label>
                     </div>
                     <Button 
