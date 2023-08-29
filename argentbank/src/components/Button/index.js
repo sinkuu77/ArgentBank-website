@@ -1,9 +1,9 @@
 import './style.scss'
 
 
-export default function Button({ text }) {
+export default function Button({ text, type, onClick }) {
     return (
-        <button className='btn'>
+        <button className='btn' type={type} onClick={onClick}>
             {text}
         </button>
     )

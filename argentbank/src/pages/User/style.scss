@@ -1,6 +1,59 @@
 .user {
     flex: 1;
     background-color: #12002b;
+    &__edit {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        background-color: #fff;
+        padding: 21px;
+        &--title {
+            font-size: 28px;
+            margin: 0 0 12px;
+        }
+        &--wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            input {
+                padding: 7px;
+            }
+            
+        }
+        &--error {
+            color: red;
+        }
+        &--success {
+            color: #ffffff;
+            background-color: #00A687;
+            width: 180px;
+            padding: 10px;
+            text-align: center;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            border-radius: 3px;
+            transform: scaleZ(0);
+	        animation: message 3s ease-in-out;
+            @keyframes message {
+                0% {
+                    transform: scaleZ(1);
+                    opacity: 1;
+                }
+                100% {
+                    transform: scaleZ(0);
+                    opacity: 0;
+                }
+            }
+        }
+        &--btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+    }
     &__header {
         color: #fff;
         margin-bottom: 2rem;
