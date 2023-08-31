@@ -12,7 +12,7 @@ import './style.scss'
 
 export default function Header() {
     const { userToken } = useSelector((state) => state.auth)
-    const { firstName } = useSelector((state) => state.profile)
+    const { userName } = useSelector((state) => state.profile)
     const dispatch = useDispatch()
     const handleLogout = () => {
         dispatch(logout())
@@ -29,7 +29,7 @@ export default function Header() {
                 <div>
                     <Link to='/user' className='nav__connected'>
                         <FontAwesomeIcon className='nav__connected--icon'icon={faCircleUser}/>
-                        {firstName}
+                        {userName}
                     </Link>
                     <Link to='/' className='nav__connected' onClick={handleLogout}>
                         <FontAwesomeIcon className='nav__connected--icon'icon={faRightFromBracket} />

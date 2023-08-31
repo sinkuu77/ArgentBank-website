@@ -6,8 +6,7 @@ const initialState = {
     firstName: '',
     lastName: '',
     userName: '',
-    errorProfile: null,
-    success: null
+    errorProfile: null
 }
 
 export const profileSlice = createSlice({

@@ -5,8 +5,8 @@ const initialState = {
     loading: false,
     displayForm: false,
     username: null,
-    error: null,
-    success: null
+    nameError: null,
+    nameSuccess: null
 }
 
 export const usernameSlice = createSlice({
@@ -18,26 +18,28 @@ export const usernameSlice = createSlice({
         },
         cancel: (state) => {
             state.displayForm = false
+        },
+        resetNameSuccess: (state) => {
+            state.nameSuccess = ''
         }
     },
     extraReducers: {
         [setUserName.pending]: (state) => {
             state.loading = true
-            state.error = null
+            state.nameError = null
         },
         [setUserName.fulfilled]: (state, { payload }) => {
-            console.log({payload})
             state.loading = false
             state.username = payload
-            state.success = 'Username is saved'
+            state.nameSuccess = 'Username is saved'
         },
         [setUserName.rejected]: (state, { payload }) => {
             state.loading = false
-            state.error = payload
+            state.nameError = payload
         }
     }
 
 })
 
-export const { display, cancel, clickCancel, clickSave } = usernameSlice.actions
+export const { display, cancel, resetNameSuccess } = usernameSlice.actions
 export default usernameSlice.reducer

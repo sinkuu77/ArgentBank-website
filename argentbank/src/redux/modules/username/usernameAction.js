@@ -14,7 +14,6 @@ export const setUserName = createAsyncThunk(
                     'Authorization': 'Bearer' + localStorage.getItem('userToken'),
                 },
             }
-            console.log(userName)
             const response = await axios.put(`${url}/user/profile`, userName,
             config
             )

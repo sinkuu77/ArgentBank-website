@@ -2,7 +2,7 @@ import Button from '../../components/Button'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { display, cancel } from '../../redux/modules/username/usernameSlice'
+import { display, cancel, resetNameSuccess } from '../../redux/modules/username/usernameSlice'
 import { setUserName } from '../../redux/modules/username/usernameAction'
 import { userProfile } from '../../redux/modules/profile/profileAction'
 
@@ -15,12 +15,12 @@ import './style.scss'
 export default function User() {
     const { userToken } = useSelector((state) => state.auth)
     const { firstName, lastName, userName, errorProfile } = useSelector((state) => state.profile)
-    const { displayForm, error, success } = useSelector((state) => state.username)
+    const { displayForm, nameError, nameSuccess } = useSelector((state) => state.username)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
     useEffect(() => {
-        if(!userToken) {
+        if(!userToken || errorProfile) {
             navigate('/')
         }
         dispatch(userProfile(userToken))
@@ -33,8 +33,9 @@ export default function User() {
             userName: newUsername
         }
         dispatch(setUserName(username))
+        dispatch(userProfile(userToken))
+        dispatch(resetNameSuccess())
         dispatch(cancel())
-        
 }
 
     return (
@@ -70,7 +71,7 @@ export default function User() {
                     disabled
                     defaultValue={lastName} />
                 </div>
-                {error&& <p className='user__edit--error'>{error}</p>}
+                {nameError&& <p className='user__edit--error'>{nameError}</p>}
                 <div className='user__edit--btn'>
                     <Button 
                     text={'Save'}
@@ -88,7 +89,7 @@ export default function User() {
                 <button className="user__header--edit" onClick={() => dispatch(display())}>Edit Name</button>
             </div>}
             
-            {success&& <p className='user__edit--success'>{success}</p>}
+            {nameSuccess&& <p className='user__edit--success'>{nameSuccess}</p>}
             <h2 className="sr-only">Accounts</h2>
             <AccountCard 
             title={'Argent Bank Checking (x8349)'}
