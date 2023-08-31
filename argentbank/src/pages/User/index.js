@@ -1,8 +1,10 @@
 import Button from '../../components/Button'
 import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { display, cancel } from '../../redux/modules/username/usernameSlice'
-import { userName } from '../../redux/modules/username/usernameAction'
+import { setUserName } from '../../redux/modules/username/usernameAction'
+import { userProfile } from '../../redux/modules/profile/profileAction'
 
 import AccountCard from '../../components/AccountCard'
 
@@ -11,20 +13,26 @@ import AccountCard from '../../components/AccountCard'
 import './style.scss'
 
 export default function User() {
-    const { firstName, lastName } = useSelector((state) => state.profile)
-    const { displayForm, username, error, success } = useSelector((state) => state.username)
+    const { userToken } = useSelector((state) => state.auth)
+    const { firstName, lastName, userName, errorProfile } = useSelector((state) => state.profile)
+    const { displayForm, error, success } = useSelector((state) => state.username)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
+    useEffect(() => {
+        if(!userToken) {
+            navigate('/')
+        }
+        dispatch(userProfile(userToken))
+    }, [navigate, errorProfile, userToken, dispatch])
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        const newFirstName = event.target.firstnameInput.value
-        const newLastName = event.target.lastnameInput.value
+        const newUsername = event.target[0].value
         const username = {
-            firstName : newFirstName,
-            lastName: newLastName
+            userName: newUsername
         }
-        dispatch(userName(username))
+        dispatch(setUserName(username))
         dispatch(cancel())
         
 }
@@ -37,12 +45,20 @@ export default function User() {
             >
                 <p className='user__edit--title'>Edit user info</p>
                 <div className='user__edit--wrapper'>
+                    <label htmlFor='username'>Username:</label>
+                    <input 
+                    type='text' 
+                    id='username' 
+                    name='usernameInput'
+                    defaultValue={userName} />
+                </div>
+                <div className='user__edit--wrapper'>
                     <label htmlFor='firstname'>First name:</label>
                     <input 
                     type='text' 
                     id='firstname' 
                     name='firstnameInput'
-                    required
+                    disabled
                     defaultValue={firstName} />
                 </div>
                 <div className='user__edit--wrapper'>
@@ -51,7 +67,7 @@ export default function User() {
                     type='text' 
                     id='lastname' 
                     name='lastnameInput'
-                    required
+                    disabled
                     defaultValue={lastName} />
                 </div>
                 {error&& <p className='user__edit--error'>{error}</p>}

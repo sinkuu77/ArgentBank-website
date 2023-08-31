@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { userName } from './usernameAction'
+import { setUserName } from './usernameAction'
 
 const initialState = {
     loading: false,
@@ -21,17 +21,17 @@ export const usernameSlice = createSlice({
         }
     },
     extraReducers: {
-        [userName.pending]: (state) => {
+        [setUserName.pending]: (state) => {
             state.loading = true
             state.error = null
         },
-        [userName.fulfilled]: (state, { payload }) => {
+        [setUserName.fulfilled]: (state, { payload }) => {
             console.log({payload})
             state.loading = false
             state.username = payload
             state.success = 'Username is saved'
         },
-        [userName.rejected]: (state, { payload }) => {
+        [setUserName.rejected]: (state, { payload }) => {
             state.loading = false
             state.error = payload
         }

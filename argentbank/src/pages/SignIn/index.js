@@ -5,7 +5,6 @@ import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { userLogin } from '../../redux/modules/auth/authAction'
-import { userProfile } from '../../redux/modules/profile/profileAction'
 import { remember, setEmail } from '../../redux/modules/auth/authSlice'
 
 import Button from '../../components/Button'
@@ -19,7 +18,6 @@ export default function SignIn() {
 
     useEffect(() => {
         if(userToken) {
-            dispatch(userProfile(userToken))
             navigate('/user')
         }
     }, [navigate, dispatch, userToken])

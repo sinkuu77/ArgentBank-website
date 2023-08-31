@@ -5,6 +5,7 @@ import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { logout } from '../../redux/modules/auth/authSlice'
+import { persistor } from '../../redux/store'
 
 import Logo from '../../assets/argentBankLogo.webp'
 import './style.scss'
@@ -13,6 +14,10 @@ export default function Header() {
     const { userToken } = useSelector((state) => state.auth)
     const { firstName } = useSelector((state) => state.profile)
     const dispatch = useDispatch()
+    const handleLogout = () => {
+        dispatch(logout())
+        persistor.purge()
+    }
     return (
         <header>
             <nav className='nav'>
@@ -26,7 +31,7 @@ export default function Header() {
                         <FontAwesomeIcon className='nav__connected--icon'icon={faCircleUser}/>
                         {firstName}
                     </Link>
-                    <Link to='/' className='nav__connected' onClick={() => dispatch(logout())}>
+                    <Link to='/' className='nav__connected' onClick={handleLogout}>
                         <FontAwesomeIcon className='nav__connected--icon'icon={faRightFromBracket} />
                         Sign out
                     </Link>

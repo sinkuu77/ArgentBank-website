@@ -12,7 +12,7 @@ const initialState = {
     userToken,
     checked: false,
     email: initialEmail,
-    error: null,
+    errorLogin: null,
     success: null
 }
 
@@ -24,7 +24,7 @@ export const authSlice = createSlice({
             localStorage.removeItem('userToken')
             state.loading = false
             state.userToken = null
-            state.error = null
+            state.errorLogin = null
         },
         setEmail: (state, { payload }) => {
             state.email = payload

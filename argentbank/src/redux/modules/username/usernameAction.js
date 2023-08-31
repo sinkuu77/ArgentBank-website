@@ -3,9 +3,9 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 
 const url = 'http://localhost:3001/api/v1'
 
-export const userName = createAsyncThunk(
+export const setUserName = createAsyncThunk(
     'user/name',
-    async ({ username }, { rejectWithValue }) => {
+    async (userName, { rejectWithValue }) => {
         try {
             const config = {
                 headers: {
@@ -14,7 +14,8 @@ export const userName = createAsyncThunk(
                     'Authorization': 'Bearer' + localStorage.getItem('userToken'),
                 },
             }
-            const response = await axios.put(`${url}/user/profile`, {username},
+            console.log(userName)
+            const response = await axios.put(`${url}/user/profile`, userName,
             config
             )
             return response.data
