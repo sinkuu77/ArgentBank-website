@@ -6,6 +6,7 @@ import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout } from '../../redux/modules/auth/authSlice'
 import { persistor } from '../../redux/store'
+import { resetNameSuccess } from '../../redux/modules/username/usernameSlice'
 
 import Logo from '../../assets/argentBankLogo.webp'
 import './style.scss'
@@ -16,6 +17,7 @@ export default function Header() {
     const dispatch = useDispatch()
     const handleLogout = () => {
         dispatch(logout())
+        dispatch(resetNameSuccess())
         persistor.purge()
     }
     return (
