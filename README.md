@@ -1,10 +1,9 @@
-# Argent Bank API
+# ArgentBank (une banque en ligne)
 
-This codebase contains the code needed to run the backend for Argent Bank.
+<p>J'ai implémenté les fonctionnalités de connexion et de modification de pseudo en utilisant React et Redux, dans le cadre du onzième projet de ma formation en tant qu'intégrateur web chez OpenClassrooms.</p>
+<p>Voici les informations nécessaires pour exécuter ce projet 👇 </p>
 
-## Getting Started
-
-### Prerequisites
+* **Prerequisites**
 
 Argent Bank uses the following tech stack:
 
@@ -21,16 +20,23 @@ node --version
 mongo --version
 ```
 
-### Instructions
-
-1. Fork this repo
-1. Clone the repo onto your computer
-1. Open a terminal window in the cloned project
-1. Run the following commands:
+* **Pour exécuter ce projet**
+<p>Cloner le repo en local</p>
 
 ```bash
-# Install dependencies
-npm install
+# Se placer dans le dossier d'argentbank
+cd argentbank
+
+# Exécuter ce projet
+npm run start
+```
+
+* **Instructions**
+1. Clone the repo onto your computer
+2. Open a terminal window in the cloned project
+3. Run the following commands:
+
+```bash
 
 # Start local dev server
 npm run dev:server
@@ -41,9 +47,8 @@ npm run populate-db
 
 Your server should now be running at http://locahost:3001 and you will now have two users in your MongoDB database!
 
-## Populated Database Data
-
-Once you run the `populate-db` script, you should have two users in your database:
+* **Populated Database Data**
+<p>Once you run the `populate-db` script, you should have two users in your database:</p>
 
 ### Tony Stark
 
@@ -59,14 +64,19 @@ Once you run the `populate-db` script, you should have two users in your databas
 - Email: `steve@rogers.com`,
 - Password: `password456`
 
-## API Documentation
+* **API Documentation**
+<p>To learn more about how the API works, once you have started your local environment, you can visit: http://localhost:3001/api-docs</p>
 
-To learn more about how the API works, once you have started your local environment, you can visit: http://localhost:3001/api-docs
+## le délai de production du site
 
-## Design Assets
 
-Static HTML and CSS has been created for most of the site and is located in: `/designs`.
+## Stack utilisé
+React, Redux
 
-For some of the dynamic features, like toggling user editing, there is a mock-up for it in `/designs/wireframes/edit-user-name.png`.
+## Point
 
-And for the API model that you will be proposing for transactitons, the wireframe can be found in `/designs/wireframes/transactions.png`.
+
+## Problème en réalisant ce projet
+<p>En implémentant la fonctionnalité de modification du pseudo de l'utilisateur, j'ai rencontré un problème où, lors de la soumission d'un formulaire, la page se rafraîchissait, et les valeurs récupérées via l'état disparaissaient. </p>
+<p>Après des recherches, j'ai découvert que je pouvais résoudre ce problème en utilisant Redux Persist pour stocker ces valeurs dans le localStorage. </p>
+<p>Grâce à la documentation officielle de Redux Persist, j'ai appris comment appliquer la persistance et configurer cela, ce qui m'a permis de maintenir l'état même lorsque la page se rafraîchit.</p>
