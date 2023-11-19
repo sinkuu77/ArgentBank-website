@@ -24,8 +24,10 @@ mongo --version
 <p>Cloner le repo en local</p>
 
 ```bash
-# Se placer dans le dossier d'argentbank
+# Se rendre dans le dossier d'argentbank
 cd argentbank
+
+npm install
 
 # Exécuter ce projet
 npm run start
@@ -39,6 +41,8 @@ npm run start
 ```bash
 
 # Start local dev server
+npm install
+
 npm run dev:server
 
 # Populate database with two users
