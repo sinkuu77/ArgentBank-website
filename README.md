@@ -68,13 +68,13 @@ Your server should now be running at http://locahost:3001 and you will now have 
 <p>To learn more about how the API works, once you have started your local environment, you can visit: http://localhost:3001/api-docs</p>
 
 ## le délai de production du site
-
+13.08.23 - 08.09.23
 
 ## Stack utilisé
 React, Redux
 
 ## Point
-
+Au cours de ce projet, j'ai appris comment gérer efficacement les états de React en utilisant Redux. De plus, j'ai acquis une compréhension approfondie des middlewares de Redux.
 
 ## Problème en réalisant ce projet
 <p>En implémentant la fonctionnalité de modification du pseudo de l'utilisateur, j'ai rencontré un problème où, lors de la soumission d'un formulaire, la page se rafraîchissait, et les valeurs récupérées via l'état disparaissaient. </p>
